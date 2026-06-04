@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: ml-pipeline-core-api
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 8000
+      - key: API_MODEL_STAGE
+        value: Production
+      - key: MLFLOW_TRACKING_URI
+        sync: false
+      - key: MLFLOW_EXPERIMENT
+        value: telco-churn
+      - key: MLFLOW_REGISTERED_MODEL
+        value: telco-churn-classifier
+      - key: TRAIN_DEVICE
+        value: cpu
